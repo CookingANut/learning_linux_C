@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "linux_c_2.20.2.2_stack.h": "c"
     }
 }

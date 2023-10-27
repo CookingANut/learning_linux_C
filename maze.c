@@ -7,11 +7,11 @@ struct point { int row, col; } stack[512];
 int top = 0;
 
 int maze[MAX_ROW][MAX_COL] = { 
-    0, 1, 0, 0, 0, 
-    0, 1, 0, 1, 0, 
-    0, 0, 0, 0, 0,
-    0, 1, 1, 1, 0, 
-    0, 0, 0, 1, 0,
+    {0, 1, 0, 0, 0},
+    {0, 1, 0, 1, 0},
+    {0, 0, 0, 0, 0},
+    {0, 1, 1, 1, 0},
+    {0, 0, 0, 1, 0},
 };
 
 struct point predecessor[MAX_ROW][MAX_COL] = { 
