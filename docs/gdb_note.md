@@ -1,5 +1,6 @@
 # GDB notes
-``` markdown
+
+``` format tab
 backtrace(bt)                           : 查看各级函数调用及参数
 finished                                : 连续运行到当前函数返回为止，然后停下来等待命令
 frame(f) + frame index                  : 选择栈帧
