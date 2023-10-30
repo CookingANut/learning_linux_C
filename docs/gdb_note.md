@@ -1,5 +1,5 @@
 # GDB notes
-
+``` markdown
 backtrace(bt)                           : 查看各级函数调用及参数
 finished                                : 连续运行到当前函数返回为止，然后停下来等待命令
 frame(f) + frame index                  : 选择栈帧
@@ -34,3 +34,4 @@ disassemble                             : 反汇编当前函数或者指定的�
 si                                      : 一条指令一条指令地单步调试
 info registers                          : 显示所有寄存器的当前值
 p $esp                                  : 打印esp寄存器的值, gdb中表示寄存器名时前面要加个$
+```
