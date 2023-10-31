@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 CTYPE="direct"
 
 usage()
@@ -59,14 +59,23 @@ case $CTYPE in
         gcc -c -fPIC stack/stack.c stack/push.c stack/pop.c stack/is_empty.c  # generate object files
         # -f + compile options
         # PIC(Position Independent Code)
-        gcc -shared -o libstack.so stack.o push.o pop.o is_empty.o  # generate libstack.so file
-        gcc linux_c_2.20.2.2_main.c -g -L. -lstack -Istack -o main2
+        # gcc -shared -o libstack.so stack.o push.o pop.o is_empty.o  # generate libstack.so file
+        gcc -shared -Wl,-soname,libstack.so.1 -o libstack.so.1.0 stack.o push.o pop.o is_empty.o
+        # link name: libstack.so, only used when compiling -l arg
+        # soname: libstack.so.1, -Wl,-soname, to let ld to set soname for libstack
+        # realname: libstack.so.1.0
+
         cat /etc/ld.so.conf | grep "/home/daemonh/cproj/"
         if [[ $? -ne 0 ]]; then
             echo -e "/home/daemonh/cproj/\n" >> /etc/ld.so.conf
         else
             echo "PATH:/home/daemonh/cproj/ is in /etc/ld.so.conf already"
         fi
+        
+        sudo ldconfig  # create libstack.so.1 -> libstack.so.1.0
+        ln -s libstack.so.1.0 libstack.so # link libstack.so.1.0 -> libstack.so for gcc
+        gcc linux_c_2.20.2.2_main.c -g -L. -lstack -Istack -o main2
+
         # use ldd main2 to check what shared library main2 depends on
                 # $ ldd main2
                 # linux-vdso.so.1 (0x00007ffcabbfc000)
@@ -83,4 +92,6 @@ case $CTYPE in
         # then use `sudo ldconfig -v` to check
     ;;
 esac
+# show process address space
+ps | grep bash | cut -d " " -f 1 | xargs -i cat /proc/{}/maps
 exit $?
