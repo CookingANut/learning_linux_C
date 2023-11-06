@@ -1,5 +1,11 @@
 #include <stdio.h>
+/*
+2.23.6.1 answer:
+const char **p;  p is a pointer of a pointer of const char
+char *const *p;  p is a pointer of a const pointer of char
+char **const p;  p is a const pointer of a pointer of char
 
+ */
 int main(int argc, char *argv[])
 { 
     int i; 
