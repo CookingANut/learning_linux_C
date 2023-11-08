@@ -2,6 +2,8 @@
     "files.associations": {
         "stdio.h": "c",
         "linux_c_2.20.2.2_stack.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "string.h": "c",
+        "para_allocator.h": "c"
     }
 }
