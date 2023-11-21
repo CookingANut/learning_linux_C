@@ -83,6 +83,16 @@ FILE *fopen(const char *path, const char *mode);
 返回值：成功返回文件指针，出错返回NULL并设置errno
 ```
 
+``` <!-- language: lang-none -->
+mode option
+"r"   :   只读，文件必须已存在
+"w"   :   只写，如果文件不存在则创建，如果文件已存在则把文件长度截断（Truncate）为0字节再重新写，也就是替换掉原来的文件内容
+"a"   :   只能在文件末尾追加数据，如果文件不存在则创建
+"r+"  :   允许读和写，文件必须已存在
+"w+"  :   允许读和写，如果文件不存在则创建，如果文件已存在则把文件长度截断为0字节再重新写
+"a+"  :   允许读和追加数据，如果文件不存在则创建
+```
+
 ```c
 #include <stdio.h>
 int fclose(FILE *fp);
