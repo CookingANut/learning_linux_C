@@ -298,3 +298,30 @@ gG      : 取double型参数格式化，精度是指有效数字而非小数点�
 int fflush(FILE *stream);
 返回值：成功返回0，出错返回EOF并设置errno
 ```
+
+## 数值字符串转换函数
+
+``` c
+#include <stdlib.h>
+int atoi(const char *nptr);
+double atof(const char *nptr);
+返回值：转换结果
+
+#include <stdlib.h>
+long int strtol(const char *nptr, char **endptr, int base);
+double strtod(const char *nptr, char **endptr);
+返回值：转换结果，出错时设置errno
+```
+
+## 分配内存的函数
+
+``` c
+#include <stdlib.h>
+void *calloc(size_t nmemb, size_t size);
+void *realloc(void *ptr, size_t size);
+返回值：成功返回所分配内存空间的首地址，出错返回NULL
+
+#include <alloca.h>
+void *alloca(size_t size);
+返回值：返回所分配内存空间的首地址，如果size太大导致栈空间耗尽，结果是未定义的
+```
