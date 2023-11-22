@@ -9,6 +9,9 @@
 static char current_time_str[stringCache];
 
 void get_current_time()
+/*
+ *  get current time and format it to string
+ */
 {
     if (sizeof(current_time_str) < 8) {
         printf("cur string lenth is < 20\n");
