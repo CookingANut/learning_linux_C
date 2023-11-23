@@ -1,6 +1,10 @@
 #include <stdlib.h>
 #include "linkedlist.h"
 
+/* single linked list format as below:
+ * HEAD -> ... -> p2 -> p1 -> p0 -> NULL
+ */
+
 static link head = NULL;
 
 link make_node(unsigned char item)
@@ -38,7 +42,8 @@ void delete(link p)
     link *pnext; 
     for (pnext = &head; *pnext; pnext = &(*pnext)->next) 
         if (*pnext == p) { 
-            *pnext = p->next; return; 
+            *pnext = p->next; 
+            return; 
         }
 }
 

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "linkedlist.h"
+#include "doublylinkedlist.h"
 
 void print_item(link p)
 {
@@ -25,18 +25,19 @@ int main(void)
     destroy();
 
     p = make_node(100);
-    push(p);
+    enqueue(p);
 
     p = make_node(200);
-    push(p);
+    enqueue(p);
 
     p = make_node(250);
-    push(p);
+    enqueue(p);
 
-    while ((p = pop())) {
+    while (p = dequeue())
+    {
         print_item(p);
         free_node(p);
     }
-    
+
     return 0;
 }

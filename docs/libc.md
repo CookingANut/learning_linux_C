@@ -1,4 +1,4 @@
-# C Stdlib
+# C std lib
 
 ## 初始化字符串
 
