@@ -25,7 +25,48 @@ O_NONBLOCK 对于设备文件，以O_NONBLOCK方式打开可以做非阻塞I/O�
 ```
 
 ```c
+// files descriptor
+#define STDIN_FILENO 0
+#define STDOUT_FILENO 1
+#define STDERR_FILENO 2
 #include <unistd.h>
 int close(int fd);
 返回值：成功返回0，出错返回-1并设置errno
+```
+
+## read/write
+
+```c
+#include <unistd.h>
+ssize_t read(int fd, void *buf, size_t count);
+返回值：成功返回读取的字节数，出错返回-1并设置errno，如果在调read之前已到达文件末尾，则这次read返回0
+
+#include <unistd.h>
+ssize_t write(int fd, const void *buf, size_t count);
+返回值：成功返回写入的字节数，出错返回-1并设置errno
+```
+
+## lseek
+
+```c
+#include <sys/types.h>
+#include <unistd.h>
+off_t lseek(int fd, off_t offset, int whence);
+```
+
+## fcntl
+
+```c
+#include <unistd.h>
+#include <fcntl.h>
+int fcntl(int fd, int cmd);
+int fcntl(int fd, int cmd, long arg);
+int fcntl(int fd, int cmd, struct flock *lock);
+```
+
+## ioctl
+
+```c
+#include <sys/ioctl.h>
+int ioctl(int d, int request, ...);
 ```
