@@ -70,3 +70,33 @@ int fcntl(int fd, int cmd, struct flock *lock);
 #include <sys/ioctl.h>
 int ioctl(int d, int request, ...);
 ```
+
+## mmap
+
+```c
+#include <sys/mman.h> 
+void *mmap(void *addr, size_t len, int prot, int flag, int filedes, off_t off); 
+int munmap(void *addr, size_t len);
+
+addr:
+如果addr参数为NULL，内核会自己在进程地址空间中选择合适的地址建立映射。
+如果addr不是NULL，则给内核一个提示，应该从什么地址开始映射，
+内核会选择addr之上的某个合适的地址开始映射。建立映射后，真正的映射首地址通过返回值可以得到。
+
+len:
+len参数是需要映射的那一部分文件的长度。
+
+prot:
+PROT_EXEC表示映射的这一段可执行，例如映射共享库
+PROT_READ表示映射的这一段可读
+PROT_WRITE表示映射的这一段可写
+PROT_NONE表示映射的这一段不可访问
+
+flag:
+MAP_SHARED多个进程对同一个文件的映射是共享的，一个进程对映射的内存做了修改，另一个进程也会看到这种变化。
+MAP_PRIVATE多个进程对同一个文件的映射不是共享的，一个进程对映射的内存做了修改，另一个进程并不会看到这种变化，也不会真的写到文件中去。
+
+off:
+off参数是从文件的什么位置开始映射，必须是页大小的整数倍（在32位体系统结构上通常是4K）。
+filedes是代表该文件的描述符。
+```
